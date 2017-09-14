@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 * {
   outline: none;
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -9,12 +12,15 @@ form {
   justify-content: center;
 }
 
+label {
+  color: #7F7F7E;
+}
+
 .list-input, .list-btn {
   width: 60%;
   height: 30px;
   border-radius: 3px;
   border: 1px solid gray;
-
 
 }
 
@@ -24,17 +30,20 @@ form {
 
 .list-btn {
   width: 30%;
-  height: calc(34px);
-  margin-left: 5px;
+  height: 34px;
+  margin-left: 10px;
   cursor: pointer;
+  background-color: #D9D8D7;
+  box-shadow: inset 0px 34px 0px -17px #EBEAE9;
 }
 
 .header {
-  height: 80px;
-  border-bottom: 1px dashed gray;
+  height: 90px;
+  border-bottom: 1px dashed #C7C6C5;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bolder;
 }
 
 .search-area {
@@ -46,9 +55,7 @@ form {
 }
 
 .list-area {
-  /*border: 2px solid blue;*/
-  padding-left: 20px;
-  padding-right: 20px;
+  /*border: 1px solid blue;*/
 
 }
 
@@ -57,6 +64,29 @@ form {
   /*border: 1px solid pink;*/
   display: flex;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.list-internal {
+  /*border: 1px solid green;*/
+  display: flex;
+}
+
+.checkbox {
+  margin-right: 5px;
+  color: #7F7F7E;
+  outline: 2px gray;
+  cursor: pointer;
+}
+
+.highlight-color {
+  background-color: #F4F7FA;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #D1D0CF;
 }
 
 .bottom-details {
@@ -64,14 +94,20 @@ form {
   justify-content: space-between;
   position: absolute;
   bottom: 0;
-  border-top: 1px dashed gray;
+  border-top: 1px dashed #C7C6C5;
   width: 100%;
   color: gray;
+  font-size: .75em;
 }
 
 .bottom {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.mark-all {
+  color: #1E87B4;
+  cursor: pointer;
 }
 
 #container {
