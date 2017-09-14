@@ -1,0 +1,95 @@
+* {
+  outline: none;
+}
+
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.list-input, .list-btn {
+  width: 60%;
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid gray;
+
+
+}
+
+.list-input {
+  padding-left: 5px;
+}
+
+.list-btn {
+  width: 30%;
+  height: calc(34px);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.header {
+  height: 80px;
+  border-bottom: 1px dashed gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-area {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: gray;
+}
+
+.list-area {
+  /*border: 2px solid blue;*/
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.list-item {
+  height: 35px;
+  /*border: 1px solid pink;*/
+  display: flex;
+  align-items: center;
+}
+
+.bottom-details {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px dashed gray;
+  width: 100%;
+  color: gray;
+}
+
+.bottom {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#container {
+  padding-top: 50px;
+  background-color: lightgray;
+  height: 100%;
+  min-height: 100vh;
+}
+
+#todo-list {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid gray;
+  min-height: 500px;
+  padding: 0px;
+  background-color: white;
+  border-radius: 5px;
+  position: relative;
+
+}
+
