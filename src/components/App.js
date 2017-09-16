@@ -4,6 +4,7 @@ import AllListItems from './AllListItems'
 import ItemCounter from './ItemCounter';
 import MarkAllComplete from './MarkAllComplete'
 import '../App.css';
+import Axios from 'axios';
 
 export default class App extends Component {
   constructor(){
@@ -18,9 +19,15 @@ export default class App extends Component {
 
  componentWillMount(){
   // will do axios request to API here
-  this.setState({
-    num_count: this.state.todo_list.length
+  axios.get('http://localhost:5000/')
+  .then((response) => {
+    console.log('response: ', response)
+    this.setState({
+      todo_list: ['go to gym', 'do laundry'] // should be response.data something
+      num_count: this.state.todo_list.length
+    })
   })
+
  }
 
  addItem(event){
