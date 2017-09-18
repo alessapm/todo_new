@@ -49,19 +49,13 @@ label {
 .search-area {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   color: gray;
-}
-
-.list-area {
-  /*border: 1px solid blue;*/
-
 }
 
 .list-item {
   height: 35px;
-  /*border: 1px solid pink;*/
   display: flex;
   align-items: center;
   padding-left: 20px;
@@ -69,7 +63,6 @@ label {
 }
 
 .list-internal {
-  /*border: 1px solid green;*/
   display: flex;
 }
 
@@ -78,6 +71,13 @@ label {
   color: #7F7F7E;
   outline: 2px gray;
   cursor: pointer;
+}
+
+.blue {
+  background-color: #1E87B4;
+  color: #484848;
+  border-radius: 5px;
+
 }
 
 .highlight-color {
@@ -121,7 +121,7 @@ label {
   width: 50%;
   margin: 0 auto;
   border: 1px solid gray;
-  min-height: 500px;
+  min-height: 580px;
   padding: 0px;
   background-color: white;
   border-radius: 5px;

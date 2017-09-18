@@ -13,64 +13,80 @@ export default class App extends Component {
     this.state = {
       todo_list: [],
       action_item: '',
-      num_count: 0
+      num_count: 0,
+      action_id: ''
     }
  }
 
- componentWillMount(){
-  // will do axios request to API here
-  axios.get('http://localhost:5000/')
+ updateCount(){
+  let pendingCount = 0
+  this.state.todo_list.forEach((item) => {
+    if (!item.completed){
+      pendingCount++
+    }
+  })
+
+  this.setState({num_count: pendingCount})
+ }
+
+ getList(){
+  Axios.get('http://localhost:5000/')
   .then((response) => {
     console.log('response: ', response)
     this.setState({
-      todo_list: ['go to gym', 'do laundry'] // should be response.data something
-      num_count: this.state.todo_list.length
-    })
+      todo_list: response.data,
+    }, this.updateCount)
   })
+ }
 
+ componentWillMount(){
+  this.getList()
  }
 
  addItem(event){
   event.preventDefault();
-  // console.log('inside addItem')
-  const updatedList = this.state.todo_list;
-  const newActionItem ={item: this.state.action_item, completed: false}
-  updatedList.push(newActionItem)
 
-  document.getElementById("add-form").reset()
+  Axios.post(`http://localhost:5000/new?item=${this.state.action_item}`)
+  .then(() => {
+    this.getList();
+    document.getElementById("add-form").reset()
+  })
+ }
 
-  this.setState({
-    todo_list: updatedList,
-    action_item: '',
-    num_count: this.state.num_count + 1
-
+ update(){
+  console.log('action_id: ', this.state.action_id)
+  Axios.put(`http://localhost:5000/comp/${this.state.action_id}`)
+  .then(() => {
+    this.getList()
   })
  }
 
  markComplete(event){
-   console.log('insideMark complete')
-   console.log('target: ', event.target.parentNode.nextSibling.innerHTML)
    const targetValue = event.target.parentNode.nextSibling.innerHTML
    this.state.todo_list.forEach((item, i) => {
     if (item.item === targetValue) {
-      // if item.item === target, then reassign this.state.todo_list[i].completed = true
-      const todo_copy = this.state.todo_list
-      todo_copy[i].completed = true;
-      this.setState({todo_list: todo_copy})
+      const todo_copy = [...this.state.todo_list]
+      const itemId = todo_copy[i].id
+      this.setState({action_id: itemId}, this.update)
     }
    })
  }
 
  markAll(){
-  const todo_arr = this.state.todo_list
-  const completedArr = []
-  todo_arr.forEach(obj => {
-    obj.completed = true;
-    completedArr.push(obj)
-  })
-  this.setState({
-    todo_list: completedArr
-  })
+  // const todo_arr = [...this.state.todo_list]
+  // const completedArr = []
+
+  // this.state.todo_list.forEach(obj => {
+    // console.log('obj.id: ', obj.id)
+    // this.setState({action_id: obj.id}, this.update)
+    Axios.put(`http://localhost:5000/comp/all`)
+    .then((res) => {
+      console.log(res)
+      this.getList()
+    })
+  // })
+
+
  }
 
 handleChange(event){
@@ -91,10 +107,10 @@ handleChange(event){
             <button type="submit" className='list-btn'>Add Todo</button>
           </form>
         </div>
-        <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)}/>
+        <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)} />
         <div className="bottom-details">
           <ItemCounter numCount={this.state.num_count} />
-          <MarkAllComplete />
+          <MarkAllComplete markAll={this.markAll.bind(this)} />
         </div>
       </div>
     </div>
