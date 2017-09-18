@@ -60,6 +60,8 @@ label {
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
+  justify-content: space-between;
+  color: #7F7F7E;
 }
 
 .list-internal {
@@ -68,9 +70,13 @@ label {
 
 .checkbox {
   margin-right: 5px;
-  color: #7F7F7E;
   outline: 2px gray;
   cursor: pointer;
+}
+
+.delete-btn {
+  cursor: pointer;
+  visibility: hidden;
 }
 
 .blue {

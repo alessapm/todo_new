@@ -73,25 +73,42 @@ export default class App extends Component {
  }
 
  markAll(){
-  // const todo_arr = [...this.state.todo_list]
-  // const completedArr = []
-
-  // this.state.todo_list.forEach(obj => {
-    // console.log('obj.id: ', obj.id)
-    // this.setState({action_id: obj.id}, this.update)
     Axios.put(`http://localhost:5000/comp/all`)
     .then((res) => {
       console.log(res)
       this.getList()
     })
-  // })
-
-
  }
 
 handleChange(event){
-
   this.setState({action_item: event.target.value})
+}
+
+revealDelete(event){
+  const id = event.target.firstChild.value
+  const deletebtn = event.target.querySelector('.delete-btn')
+  if (id && deletebtn) {
+    deletebtn.style.visibility = 'visible'
+  }
+}
+
+hideDelete(event){
+  const deletebtn = event.target.querySelector('.delete-btn')
+  if (deletebtn) {
+    deletebtn.style.visibility = 'hidden'
+  }
+}
+
+deleteItem(event){
+ const id = event.target.parentNode.previousSibling.previousSibling.value
+
+ if (id) {
+  Axios.put(`http://localhost:5000/delete/${id}`)
+    .then((res) => {
+      console.log(res)
+      this.getList()
+    })
+ }
 }
 
   render() {
@@ -107,7 +124,9 @@ handleChange(event){
             <button type="submit" className='list-btn'>Add Todo</button>
           </form>
         </div>
-        <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)} />
+        <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)}
+          revealDelete={this.revealDelete.bind(this)} hideDelete={this.hideDelete.bind(this)}
+          deleteItem={this.deleteItem.bind(this)} />
         <div className="bottom-details">
           <ItemCounter numCount={this.state.num_count} />
           <MarkAllComplete markAll={this.markAll.bind(this)} />
