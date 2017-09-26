@@ -9,7 +9,7 @@ export default class AllListItems extends Component {
 
       return <ListItem item={item.item} key={item.id} id={item.id} highlight={highlight}
         markComplete={this.props.markComplete} completed={item.completed}
-         deleteItem={this.props.deleteItem}/>
+         getList={this.props.getList} deleteItem={this.props.deleteItem} />
     });
 
     return (

@@ -23,3 +23,6 @@ Please download, or fork + clone this repo. Install all dependencies using npm i
 * As a user I should be able to delete an item. 
 
 
+## Future Goals
+
+I would have liked to incorporate a drag and drop feature for reordering the todo items. 

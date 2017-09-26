@@ -81,23 +81,18 @@ export default class App extends Component {
     })
  }
 
+ // deleteItem(){
+ //  Axios.delete(`http://localhost:5000/todo/destroy/${id}`)
+ //    .then((res) => {
+ //      console.log(res)
+ //      this.getList()
+ //    })
+ //  }
+
 handleChange(event){
   this.setState({action_item: event.target.value})
 }
 
-
-// do without traditional DOM manipulation
-deleteItem(event){
- const id = event.target.parentNode.previousSibling.previousSibling.value
-
- if (id) {
-  Axios.delete(`http://localhost:5000/todo/destroy/${id}`)
-    .then((res) => {
-      console.log(res)
-      this.getList()
-    })
- }
-}
 
   render() {
     return (
@@ -113,7 +108,7 @@ deleteItem(event){
           </form>
         </div>
         <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)}
-          deleteItem={this.deleteItem.bind(this)} />
+          getList={this.getList.bind(this)} />
         <div className="bottom-details">
           <ItemCounter numCount={this.state.num_count} />
           <MarkAllComplete markAll={this.markAll.bind(this)} />
