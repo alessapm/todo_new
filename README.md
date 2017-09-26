@@ -1,4 +1,4 @@
-# Todo Flask API
+# Todo List App
 
 This is a React Todo App. It pairs with a Flask/Python back end, the code for which can be found [here](https://github.com/alessapm/todo_py_api).
 
