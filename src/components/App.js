@@ -85,21 +85,8 @@ handleChange(event){
   this.setState({action_item: event.target.value})
 }
 
-revealDelete(event){
-  const id = event.target.firstChild.value
-  const deletebtn = event.target.querySelector('.delete-btn')
-  if (id && deletebtn) {
-    deletebtn.style.visibility = 'visible'
-  }
-}
 
-hideDelete(event){
-  const deletebtn = event.target.querySelector('.delete-btn')
-  if (deletebtn) {
-    deletebtn.style.visibility = 'hidden'
-  }
-}
-
+// do without traditional DOM manipulation
 deleteItem(event){
  const id = event.target.parentNode.previousSibling.previousSibling.value
 
@@ -126,7 +113,6 @@ deleteItem(event){
           </form>
         </div>
         <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)}
-          revealDelete={this.revealDelete.bind(this)} hideDelete={this.hideDelete.bind(this)}
           deleteItem={this.deleteItem.bind(this)} />
         <div className="bottom-details">
           <ItemCounter numCount={this.state.num_count} />
