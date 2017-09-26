@@ -30,7 +30,7 @@ export default class App extends Component {
  }
 
  getList(){
-  Axios.get('http://localhost:5000/')
+  Axios.get('http://localhost:5000/todo')
   .then((response) => {
     console.log('response: ', response)
     this.setState({
@@ -46,7 +46,7 @@ export default class App extends Component {
  addItem(event){
   event.preventDefault();
 
-  Axios.post(`http://localhost:5000/new?item=${this.state.action_item}`)
+  Axios.post(`http://localhost:5000/todo/new?item=${this.state.action_item}`)
   .then(() => {
     this.getList();
     document.getElementById("add-form").reset()
@@ -55,12 +55,13 @@ export default class App extends Component {
 
  update(){
   console.log('action_id: ', this.state.action_id)
-  Axios.put(`http://localhost:5000/comp/${this.state.action_id}`)
+  Axios.put(`http://localhost:5000/todo/complete/${this.state.action_id}`)
   .then(() => {
     this.getList()
   })
  }
 
+// needs to be updated. do without traditional DOM manipulation
  markComplete(event){
    const targetValue = event.target.parentNode.nextSibling.innerHTML
    this.state.todo_list.forEach((item, i) => {
@@ -73,7 +74,7 @@ export default class App extends Component {
  }
 
  markAll(){
-    Axios.put(`http://localhost:5000/comp/all`)
+    Axios.put(`http://localhost:5000/todo/complete/all`)
     .then((res) => {
       console.log(res)
       this.getList()
@@ -103,7 +104,7 @@ deleteItem(event){
  const id = event.target.parentNode.previousSibling.previousSibling.value
 
  if (id) {
-  Axios.put(`http://localhost:5000/delete/${id}`)
+  Axios.delete(`http://localhost:5000/todo/destroy/${id}`)
     .then((res) => {
       console.log(res)
       this.getList()
