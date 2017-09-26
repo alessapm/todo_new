@@ -53,26 +53,6 @@ export default class App extends Component {
   })
  }
 
- update(){
-  console.log('action_id: ', this.state.action_id)
-  Axios.put(`http://localhost:5000/todo/complete/${this.state.action_id}`)
-  .then(() => {
-    this.getList()
-  })
- }
-
-// needs to be updated. do without traditional DOM manipulation
- markComplete(event){
-   const targetValue = event.target.parentNode.nextSibling.innerHTML
-   this.state.todo_list.forEach((item, i) => {
-    if (item.item === targetValue) {
-      const todo_copy = [...this.state.todo_list]
-      const itemId = todo_copy[i].id
-      this.setState({action_id: itemId}, this.update)
-    }
-   })
- }
-
  markAll(){
     Axios.put(`http://localhost:5000/todo/complete/all`)
     .then((res) => {
@@ -80,14 +60,6 @@ export default class App extends Component {
       this.getList()
     })
  }
-
- // deleteItem(){
- //  Axios.delete(`http://localhost:5000/todo/destroy/${id}`)
- //    .then((res) => {
- //      console.log(res)
- //      this.getList()
- //    })
- //  }
 
 handleChange(event){
   this.setState({action_item: event.target.value})
@@ -107,7 +79,7 @@ handleChange(event){
             <button type="submit" className='list-btn'>Add Todo</button>
           </form>
         </div>
-        <AllListItems listItems={this.state.todo_list} markComplete={this.markComplete.bind(this)}
+        <AllListItems listItems={this.state.todo_list}
           getList={this.getList.bind(this)} />
         <div className="bottom-details">
           <ItemCounter numCount={this.state.num_count} />
