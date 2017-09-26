@@ -12,7 +12,9 @@ In addition to the create-react-app set up, this app uses additional dependencie
 * axios
 * font-awesome
 
-install all dependencies using npm install 
+## Set up
+
+Please download, or fork + clone this repo. Install all dependencies using npm install. To start up the application enter 'npm start' in the command line. 
 
 ## User Stories
 * As a user I should be able to add an item to the todo list.
